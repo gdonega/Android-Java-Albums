@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="informatica.senai.sp.br.albumsnroll.view.FragmentRecyclerView"
+        android:name="informatica.senai.sp.br.albumsnroll.view.RecyclerView.FragmentRecyclerView"
 
         android:layout_width="match_parent"
         android:layout_marginBottom="8dp"
