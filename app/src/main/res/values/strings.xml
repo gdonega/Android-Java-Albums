@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Albums\'n Roll</string>
+    <string name="userName">User</string>
+    <string name="pass">Password</string>
+</resources>
