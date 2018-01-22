@@ -2,6 +2,7 @@ package informatica.senai.sp.br.albumsnroll.logic.dao;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -38,7 +39,7 @@ public class AlbumDao {
         db = dbo.getReadableDatabase();
         List<Album> albums = new LinkedList<>();
 
-        String list = "select _id, name, genre, releasedate, cover FROM " + AlbumsDBHelper.TABLE;
+        String list = "select _id, name, genre, releasedate FROM " + AlbumsDBHelper.TABLE;
 
         Cursor cursor = db.rawQuery(list, null);
         Album album = null;
@@ -50,9 +51,11 @@ public class AlbumDao {
                 album.setName(cursor.getString(1));
                 album.setGenre(cursor.getString(2));
                 album.setReleaseDate(new Date(cursor.getInt(3)));
-                album.setCover(cursor.getBlob(4));
+
+                albums.add(album);
             } while (cursor.moveToNext());
         }
+
         return albums;
     }
 
@@ -64,7 +67,7 @@ public class AlbumDao {
      */
     public Album find(Long id) {
         db = dbo.getReadableDatabase();
-        String find = "select _id, name, genre, releasedate, cover FROM " + AlbumsDBHelper.TABLE + " where _id = ?";
+        String find = "select _id, name, genre, releasedate FROM " + AlbumsDBHelper.TABLE + " where _id = ?";
 
         Cursor cursor = db.rawQuery(find, new String[]{String.valueOf(id)});
         cursor.moveToFirst();
@@ -74,7 +77,6 @@ public class AlbumDao {
         album.setName(cursor.getString(1));
         album.setGenre(cursor.getString(2));
         album.setReleaseDate(new Date(cursor.getInt(3)));
-        album.setCover(cursor.getBlob(4));
 
         db.close();
         return album;
@@ -99,8 +101,10 @@ public class AlbumDao {
      */
     public void save(Album album) {
         db = dbo.getWritableDatabase();
-        String insert = "insert into " + AlbumsDBHelper.TABLE + " (name, genre, releasedate, cover) values (?, ?, ?, ?)";
-        db.execSQL(insert, new Object[]{album.getName(), album.getGenre(), album.getReleaseDate(), album.getCover()});
+
+        Log.d("tryTT", album.getName());
+        String insert = "insert into " + AlbumsDBHelper.TABLE + " (name, genre, releasedate) values (?, ?, ?)";
+        db.execSQL(insert, new Object[]{album.getName(), album.getGenre(), album.getReleaseDate()});
         db.close();
     }
 
@@ -111,8 +115,8 @@ public class AlbumDao {
      */
     public void update(Album album) {
         db = dbo.getWritableDatabase();
-        String update = "update " + AlbumsDBHelper.TABLE + " set name = ?, genre = ?, releasedate = ?, cover = ? where _id = ?";
-        db.execSQL(update, new Object[]{album.getName(), album.getGenre(), album.getReleaseDate(), album.getCover(), album.getId()});
+        String update = "update " + AlbumsDBHelper.TABLE + " set name = ?, genre = ?, releasedate = ? where _id = ?";
+        db.execSQL(update, new Object[]{album.getName(), album.getGenre(), album.getReleaseDate(), album.getId()});
         db.close();
     }
 }

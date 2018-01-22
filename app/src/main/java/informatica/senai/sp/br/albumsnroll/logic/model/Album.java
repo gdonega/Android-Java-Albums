@@ -1,5 +1,6 @@
 package informatica.senai.sp.br.albumsnroll.logic.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -9,7 +10,11 @@ public class Album {
     private String name;
     private String genre;
     private Date releaseDate;
-    private byte[] cover;
+
+
+    //instances
+    private static SimpleDateFormat fmtData =
+            new SimpleDateFormat("dd 'de' MMMM 'de' yyyy");
 
     //Constructors
     public Album() {
@@ -19,19 +24,17 @@ public class Album {
         this.id = id;
     }
 
-    public Album(String name, String genre, Date releaseDate, byte[] cover) {
+    public Album(String name, String genre, Date releaseDate) {
         this.name = name;
         this.genre = genre;
         this.releaseDate = releaseDate;
-        this.cover = cover;
     }
 
-    public Album(Long id, String name, String genre, Date releaseDate, byte[] cover) {
+    public Album(Long id, String name, String genre, Date releaseDate) {
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.releaseDate = releaseDate;
-        this.cover = cover;
     }
 
     //Getters & Setters
@@ -63,15 +66,10 @@ public class Album {
         return releaseDate;
     }
 
+    public String getReleaseDateString(){return fmtData.format(releaseDate);}
+
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
-    public byte[] getCover() {
-        return cover;
-    }
-
-    public void setCover(byte[] cover) {
-        this.cover = cover;
-    }
 }
