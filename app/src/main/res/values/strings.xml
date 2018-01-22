@@ -2,4 +2,8 @@
     <string name="app_name">Albums\'n Roll</string>
     <string name="userName">User</string>
     <string name="pass">Password</string>
+    <string name="name">Name of Album:</string>
+    <string name="genre">Genre</string>
+    <string name="releaseDate">Release Date:</string>
+
 </resources>
