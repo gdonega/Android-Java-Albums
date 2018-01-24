@@ -66,6 +66,10 @@ public class Album {
         return releaseDate;
     }
 
+    public Long getReleaseDateLong() {
+        return releaseDate.getTime();
+    }
+
     public String getReleaseDateString(){return fmtData.format(releaseDate);}
 
     public void setReleaseDate(Date releaseDate) {

@@ -18,21 +18,28 @@ public class EditActivity extends AppCompatActivity {
     EditText etName;
     EditText etGenre;
     EditText etReDate;
+
     FloatingActionButton fabAddNew;
+    Album toSaveAlbum = new Album();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+        etName = findViewById(R.id.etName);
+        etGenre = findViewById(R.id.etGenre);
+        etReDate = findViewById(R.id.etReDate);
+
         if (getIntent().getExtras() != null) {
 
             Long id = (Long) getIntent().getExtras().get("id");
 
-            Log.d("asd", id.toString());
             Album album = dao.find(id);
 
-//            etName.setText(album.getName());
-//            etGenre.setText(album.getGenre());
-//            etReDate.setText(album.getReleaseDateString());
+            toSaveAlbum.setId(id);
+            etName.setText(album.getName());
+            etGenre.setText(album.getGenre());
+            etReDate.setText(album.getReleaseDateString());
         }
 
 
@@ -40,9 +47,20 @@ public class EditActivity extends AppCompatActivity {
         fabAddNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                toSaveAlbum.setName(etName.getText().toString());
+                toSaveAlbum.setGenre(etGenre.getText().toString());
+                //toSaveAlbum.setReleaseDate(etReDate);
+                dao.update(toSaveAlbum);
                 setResult(RESULT_OK);
                 finish();
             }
         });
+    }
+
+    public void takeDate(View view) {
+
+        DateDialog.makeDialog(calendar,R.id.edLancamento)
+                .show(getFragmentManager(), "Data de Lançamento");
     }
 }

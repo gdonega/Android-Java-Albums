@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,6 +22,7 @@ public class AlbumDao {
     //instances of SQLite and of Album Data Base Helper
     private SQLiteDatabase db;
     private AlbumsDBHelper dbo;
+
 
     /**
      * Constructor
@@ -72,21 +74,17 @@ public class AlbumDao {
 
         Cursor cursor = db.rawQuery(find, new String[]{String.valueOf(id)});
 
-        Album album = null;
+        Album album = new Album();
 
+        cursor.moveToFirst();
 
-        if (cursor.getCount() > 0) {
-            cursor.moveToFirst();
-//
-//            Long idT = cursor.getLong(0);
-//            album.setId(id);
-//            album.setName(cursor.getString(1));
-//            album.setGenre(cursor.getString(2));
-//           // album.setReleaseDate(new Date(cursor.getInt(3)));
-        }
-//
+        album.setId(cursor.getLong(0));
+        album.setName(cursor.getString(1));
+        album.setGenre(cursor.getString(2));
+        album.setReleaseDate(new Date(cursor.getInt(3)));
+
         cursor.close();
-//        db.close();
+        db.close();
         return album;
     }
 
@@ -112,7 +110,7 @@ public class AlbumDao {
 
         Log.d("tryTT", album.getName());
         String insert = "insert into " + AlbumsDBHelper.TABLE + " (name, genre, releasedate) values (?, ?, ?)";
-        db.execSQL(insert, new Object[]{album.getName(), album.getGenre(), album.getReleaseDate()});
+        db.execSQL(insert, new Object[]{album.getName(), album.getGenre(), album.getReleaseDateLong()});
         db.close();
     }
 
@@ -124,7 +122,7 @@ public class AlbumDao {
     public void update(Album album) {
         db = dbo.getWritableDatabase();
         String update = "update " + AlbumsDBHelper.TABLE + " set name = ?, genre = ?, releasedate = ? where _id = ?";
-        db.execSQL(update, new Object[]{album.getName(), album.getGenre(), album.getReleaseDate(), album.getId()});
+        db.execSQL(update, new Object[]{album.getName(), album.getGenre(), album.getReleaseDateLong(), album.getId()});
         db.close();
     }
 }
