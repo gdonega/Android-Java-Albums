@@ -49,7 +49,7 @@ public class MenuActivity extends AppCompatActivity {
             //FragmentRecyclerView
             recyclerView = findViewById(R.id.rvList);
 
-            fabNewAlbum = findViewById(R.id.fab);
+            fabNewAlbum = findViewById(R.id.fabAdd);
             fabNewAlbum.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
