@@ -67,18 +67,26 @@ public class AlbumDao {
      */
     public Album find(Long id) {
         db = dbo.getReadableDatabase();
-        String find = "select _id, name, genre, releasedate FROM " + AlbumsDBHelper.TABLE + " where _id = ?";
+        String find = "select * FROM " + AlbumsDBHelper.TABLE + " where _id = ?";
+
 
         Cursor cursor = db.rawQuery(find, new String[]{String.valueOf(id)});
-        cursor.moveToFirst();
 
-        Album album = new Album();
-        album.setId(cursor.getLong(0));
-        album.setName(cursor.getString(1));
-        album.setGenre(cursor.getString(2));
-        album.setReleaseDate(new Date(cursor.getInt(3)));
+        Album album = null;
 
-        db.close();
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+//
+//            Long idT = cursor.getLong(0);
+//            album.setId(id);
+//            album.setName(cursor.getString(1));
+//            album.setGenre(cursor.getString(2));
+//           // album.setReleaseDate(new Date(cursor.getInt(3)));
+        }
+//
+        cursor.close();
+//        db.close();
         return album;
     }
 

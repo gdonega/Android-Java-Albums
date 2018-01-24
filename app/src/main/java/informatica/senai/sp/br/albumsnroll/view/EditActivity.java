@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
+import informatica.senai.sp.br.albumsnroll.logic.model.Album;
 
 public class EditActivity extends AppCompatActivity {
     AlbumDao dao = new AlbumDao();
@@ -24,9 +25,14 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
         if (getIntent().getExtras() != null) {
 
-            getIntent().getExtras().get()
+            Long id = (Long) getIntent().getExtras().get("id");
 
-            /// /etName.setText();
+            Log.d("asd", id.toString());
+            Album album = dao.find(id);
+
+//            etName.setText(album.getName());
+//            etGenre.setText(album.getGenre());
+//            etReDate.setText(album.getReleaseDateString());
         }
 
 
