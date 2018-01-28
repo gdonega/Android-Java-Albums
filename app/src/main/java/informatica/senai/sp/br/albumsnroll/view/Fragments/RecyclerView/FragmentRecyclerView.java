@@ -1,4 +1,4 @@
-package informatica.senai.sp.br.albumsnroll.view.RecyclerView;
+package informatica.senai.sp.br.albumsnroll.view.Fragments.RecyclerView;
 
 import android.app.Fragment;
 import android.os.Bundle;

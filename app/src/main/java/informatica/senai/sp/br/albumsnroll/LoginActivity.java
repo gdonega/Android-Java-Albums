@@ -5,12 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 
-import informatica.senai.sp.br.albumsnroll.R;
-import informatica.senai.sp.br.albumsnroll.view.MenuActivity;
+import informatica.senai.sp.br.albumsnroll.view.Activitys.MenuActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package informatica.senai.sp.br.albumsnroll.view;
+package informatica.senai.sp.br.albumsnroll.view.Activitys;
 
 import android.app.Application;
 import android.content.Context;

@@ -4,14 +4,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import informatica.senai.sp.br.albumsnroll.logic.DB.AlbumsDBHelper;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
-import informatica.senai.sp.br.albumsnroll.view.Main;
+import informatica.senai.sp.br.albumsnroll.view.Activitys.Main;
 
 /**
  * Created by gustavo on 18/01/2018.
@@ -52,7 +51,7 @@ public class AlbumDao {
                 album.setId(cursor.getLong(0));
                 album.setName(cursor.getString(1));
                 album.setGenre(cursor.getString(2));
-                album.setReleaseDate(new Date(cursor.getInt(3)));
+                album.setReleaseDate(new Date(cursor.getLong(3)));
 
                 albums.add(album);
             } while (cursor.moveToNext());
@@ -81,7 +80,7 @@ public class AlbumDao {
         album.setId(cursor.getLong(0));
         album.setName(cursor.getString(1));
         album.setGenre(cursor.getString(2));
-        album.setReleaseDate(new Date(cursor.getInt(3)));
+        album.setReleaseDate(new Date(cursor.getLong(3)));
 
         cursor.close();
         db.close();
@@ -108,9 +107,15 @@ public class AlbumDao {
     public void save(Album album) {
         db = dbo.getWritableDatabase();
 
-        Log.d("tryTT", album.getName());
+
         String insert = "insert into " + AlbumsDBHelper.TABLE + " (name, genre, releasedate) values (?, ?, ?)";
+
+
+
         db.execSQL(insert, new Object[]{album.getName(), album.getGenre(), album.getReleaseDateLong()});
+
+
+
         db.close();
     }
 
@@ -122,6 +127,8 @@ public class AlbumDao {
     public void update(Album album) {
         db = dbo.getWritableDatabase();
         String update = "update " + AlbumsDBHelper.TABLE + " set name = ?, genre = ?, releasedate = ? where _id = ?";
+
+
         db.execSQL(update, new Object[]{album.getName(), album.getGenre(), album.getReleaseDateLong(), album.getId()});
         db.close();
     }

@@ -1,4 +1,4 @@
-package informatica.senai.sp.br.albumsnroll.view.RecyclerView;
+package informatica.senai.sp.br.albumsnroll.view.Fragments.RecyclerView;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
-import informatica.senai.sp.br.albumsnroll.view.Main;
+import informatica.senai.sp.br.albumsnroll.view.Activitys.Main;
 
 public class AlbumAdaper extends RecyclerView.Adapter{
     //instances

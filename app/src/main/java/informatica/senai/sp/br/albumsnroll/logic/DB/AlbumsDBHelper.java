@@ -25,7 +25,7 @@ public class AlbumsDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String criarTabela = "CREATE TABLE " + TABLE + " (" + ID + " integer primary key autoincrement, " + NAME +
-                " text, " + GENRE + " text, " + RELEASE_DATE + " integer)";
+                " text, " + GENRE + " text, " + RELEASE_DATE + " long)";
 
         db.execSQL(criarTabela);
 

@@ -1,22 +1,19 @@
-package informatica.senai.sp.br.albumsnroll.view.RecyclerView;
+package informatica.senai.sp.br.albumsnroll.view.Fragments.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
-import informatica.senai.sp.br.albumsnroll.view.EditActivity;
-import informatica.senai.sp.br.albumsnroll.view.Main;
-import informatica.senai.sp.br.albumsnroll.view.MenuActivity;
+import informatica.senai.sp.br.albumsnroll.view.Activitys.EditActivity;
+import informatica.senai.sp.br.albumsnroll.view.Activitys.Main;
 
 
 public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{

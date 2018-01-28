@@ -1,24 +1,19 @@
-package informatica.senai.sp.br.albumsnroll.view;
+package informatica.senai.sp.br.albumsnroll.view.Activitys;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.util.Date;
-import java.util.List;
 
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
-import informatica.senai.sp.br.albumsnroll.view.RecyclerView.AlbumAdaper;
+import informatica.senai.sp.br.albumsnroll.view.Fragments.RecyclerView.AlbumAdaper;
 
 public class MenuActivity extends AppCompatActivity {
 
