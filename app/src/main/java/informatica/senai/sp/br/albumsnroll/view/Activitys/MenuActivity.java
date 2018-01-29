@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import java.util.Date;
@@ -18,6 +19,9 @@ import informatica.senai.sp.br.albumsnroll.view.Fragments.RecyclerView.AlbumAdap
 public class MenuActivity extends AppCompatActivity {
 
     /*//Start-instances//*/
+
+        //Toolbar
+        private Toolbar toolbar;
 
         //FragmentRecyclerView
         private RecyclerView recyclerView;
@@ -37,13 +41,17 @@ public class MenuActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_menu);
 
+            //Toolbar
+            toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
             //DAO
             dao = new AlbumDao();
-
 
             //FragmentRecyclerView
             recyclerView = findViewById(R.id.rvList);
 
+            //Floating Button
             fabNewAlbum = findViewById(R.id.fabAdd);
             fabNewAlbum.setOnClickListener(new View.OnClickListener() {
                 @Override

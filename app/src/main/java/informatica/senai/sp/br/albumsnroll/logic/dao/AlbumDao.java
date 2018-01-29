@@ -1,8 +1,10 @@
 package informatica.senai.sp.br.albumsnroll.logic.dao;
 
+
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
+
 
 import java.util.Date;
 import java.util.LinkedList;
