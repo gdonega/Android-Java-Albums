@@ -1,5 +1,6 @@
 package informatica.senai.sp.br.albumsnroll.logic.model;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,8 +14,9 @@ public class Album {
 
 
     //instances
-    private static SimpleDateFormat fmtData =
-            new SimpleDateFormat("dd 'de' MMMM 'de' yyyy");
+ //   private static SimpleDateFormat fmtData =
+   //        new SimpleDateFormat("dd.MM.yyyy");
+        private static DateFormat fmtData = DateFormat.getDateInstance(DateFormat.SHORT);
 
     //Constructors
     public Album() {
