@@ -46,6 +46,7 @@ public class AlbumAdaper extends RecyclerView.Adapter{
 
         Album album = albums.get(position);
 
+
         albumViewHolder.setCheckBoxEnable(checkBoxStatus);
 
         albumViewHolder.setAlbumOnHolder(album);

@@ -101,6 +101,8 @@ public class AlbumDao {
         db.close();
     }
 
+
+
     /**
      * SAVE one album in SQLITE DB
      *

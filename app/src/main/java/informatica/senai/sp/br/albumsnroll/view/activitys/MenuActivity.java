@@ -15,7 +15,6 @@ import android.view.View;
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.AlbumAdaper;
-import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.AlbumViewHolder;
 
 public class MenuActivity extends AppCompatActivity {
 

@@ -34,7 +34,6 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     public void setCheckBoxEnable(boolean checkBoxEnable) {
         this.checkBoxStatus = checkBoxEnable;
-        Log.d("rato", "ele passou por aqui");
     }
 
     public AlbumViewHolder(View itemView) {
@@ -71,6 +70,17 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
         } else {
             cbPrepareToDell.setVisibility(View.INVISIBLE);
         }
+
+        cbPrepareToDell.setTag(albumId);
+        cbPrepareToDell.setChecked(album.getWillBeDelete());
+        cbPrepareToDell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Album albumToDelete = dao.find(albumId);
+                albumToDelete.setWillBeDelete(!albumToDelete.getWillBeDelete());
+                dao.update(albumToDelete);
+            }
+        });
     }
 
 

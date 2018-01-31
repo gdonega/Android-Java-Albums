@@ -21,19 +21,23 @@ public class Album {
 
     //Constructors
     public Album() {
+        this.willBeDelete = false;
     }
 
     public Album(Long id) {
+        this.willBeDelete = false;
         this.id = id;
     }
 
     public Album(String name, String genre, Date releaseDate) {
+        this.willBeDelete = false;
         this.name = name;
         this.genre = genre;
         this.releaseDate = releaseDate;
     }
 
     public Album(Long id, String name, String genre, Date releaseDate) {
+        this.willBeDelete = false;
         this.id = id;
         this.name = name;
         this.genre = genre;
