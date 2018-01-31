@@ -5,6 +5,7 @@
     <string name="name">Name of Album:</string>
     <string name="genre">Genre</string>
     <string name="releaseDate">Release Date:</string>
-    <string name="action_delete">delete</string>
+    <string name="action_delete_start">Starting delete</string>
+    <string name="action_delete_final">Delete</string>
 
 </resources>

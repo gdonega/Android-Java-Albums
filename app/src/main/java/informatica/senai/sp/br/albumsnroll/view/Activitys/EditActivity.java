@@ -1,22 +1,19 @@
-package informatica.senai.sp.br.albumsnroll.view.Activitys;
+package informatica.senai.sp.br.albumsnroll.view.activitys;
 
 import android.app.Activity;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
-import informatica.senai.sp.br.albumsnroll.view.Fragments.DatePickerFragment;
+import informatica.senai.sp.br.albumsnroll.view.fragments.DatePickerFragment;
 
 public class EditActivity extends AppCompatActivity {
     //instance of "dao"

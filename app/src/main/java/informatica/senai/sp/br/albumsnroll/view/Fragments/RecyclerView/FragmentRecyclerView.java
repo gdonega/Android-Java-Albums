@@ -1,11 +1,10 @@
-package informatica.senai.sp.br.albumsnroll.view.Fragments.RecyclerView;
+package informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView;
 
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import informatica.senai.sp.br.albumsnroll.R;
 

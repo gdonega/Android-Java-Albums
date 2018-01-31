@@ -3,7 +3,7 @@
     package="informatica.senai.sp.br.albumsnroll">
 
     <application
-        android:name=".view.Activitys.Main"
+        android:name=".view.activitys.Main"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,8 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.Activitys.MenuActivity" />
-        <activity android:name=".view.Activitys.EditActivity"></activity>
+        <activity android:name=".view.activitys.MenuActivity" />
+        <activity android:name=".view.activitys.EditActivity"></activity>
     </application>
 
 </manifest>

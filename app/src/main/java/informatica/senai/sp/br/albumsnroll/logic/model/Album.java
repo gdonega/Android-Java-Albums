@@ -14,9 +14,9 @@ public class Album {
 
 
     //instances
- //   private static SimpleDateFormat fmtData =
-   //        new SimpleDateFormat("dd.MM.yyyy");
-        private static DateFormat fmtData = DateFormat.getDateInstance(DateFormat.SHORT);
+    private static SimpleDateFormat fmtData =
+           new SimpleDateFormat("dd/MM/yyyy");
+      //  private static DateFormat fmtData = DateFormat.getDateInstance(DateFormat.SHORT);
 
     //Constructors
     public Album() {

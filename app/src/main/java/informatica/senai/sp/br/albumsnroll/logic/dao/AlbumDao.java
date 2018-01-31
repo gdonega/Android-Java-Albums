@@ -10,9 +10,9 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import informatica.senai.sp.br.albumsnroll.logic.DB.AlbumsDBHelper;
+import informatica.senai.sp.br.albumsnroll.logic.db.AlbumsDBHelper;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
-import informatica.senai.sp.br.albumsnroll.view.Activitys.Main;
+import informatica.senai.sp.br.albumsnroll.view.activitys.Main;
 
 /**
  * Created by gustavo on 18/01/2018.

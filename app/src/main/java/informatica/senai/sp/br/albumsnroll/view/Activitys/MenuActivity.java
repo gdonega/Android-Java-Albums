@@ -1,4 +1,4 @@
-package informatica.senai.sp.br.albumsnroll.view.Activitys;
+package informatica.senai.sp.br.albumsnroll.view.activitys;
 
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -7,14 +7,15 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-
-import java.util.Date;
 
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
-import informatica.senai.sp.br.albumsnroll.logic.model.Album;
-import informatica.senai.sp.br.albumsnroll.view.Fragments.RecyclerView.AlbumAdaper;
+import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.AlbumAdaper;
+import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.AlbumViewHolder;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -22,14 +23,19 @@ public class MenuActivity extends AppCompatActivity {
 
         //Toolbar
         private Toolbar toolbar;
+        private MenuItem startDell;
+        private MenuItem finalDell;
 
         //FragmentRecyclerView
         private RecyclerView recyclerView;
+        private AlbumAdaper adapter;
         private AlbumDao dao;
 
 
         //FloatingActionButton
         private FloatingActionButton fabNewAlbum;
+
+
 
     /*//End-instances//*/
 
@@ -78,7 +84,8 @@ public class MenuActivity extends AppCompatActivity {
             //dao.update(new Album(3L, "BATATA","N sei",new Date()));
             // Log.d("ELP",dao.find(1L).getName());
             //dao.delete(new Album(3L));
-            recyclerView.setAdapter(new AlbumAdaper(dao.getList()));
+            adapter = new AlbumAdaper(dao.getList());
+            recyclerView.setAdapter(adapter);
 
 
             RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
@@ -86,4 +93,30 @@ public class MenuActivity extends AppCompatActivity {
         }
     /*//End - methods of FragmentRecyclerView//*/
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_items, menu);
+
+        startDell= menu.findItem(R.id.start_dell_option);
+        finalDell= menu.findItem(R.id.final_dell_option);
+        return true;
+    }
+
+    @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.start_dell_option:
+                finalDell.setVisible(true);
+                startDell.setVisible(false);
+                adapter.setDellBox(true);
+                break;
+            case R.id.final_dell_option:
+                finalDell.setVisible(false);
+                startDell.setVisible(true);
+                adapter.setDellBox(false);
+                break;
+        }
+        return true;
+    }
 }

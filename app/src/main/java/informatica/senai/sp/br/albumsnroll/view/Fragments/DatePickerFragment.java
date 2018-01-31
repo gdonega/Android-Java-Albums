@@ -1,4 +1,4 @@
-package informatica.senai.sp.br.albumsnroll.view.Fragments;
+package informatica.senai.sp.br.albumsnroll.view.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -6,7 +6,6 @@ import android.app.DialogFragment;
 import android.os.Bundle;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.util.Calendar;

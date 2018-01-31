@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import com.facebook.stetho.Stetho;
 
-import informatica.senai.sp.br.albumsnroll.view.Activitys.MenuActivity;
+import informatica.senai.sp.br.albumsnroll.view.activitys.MenuActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

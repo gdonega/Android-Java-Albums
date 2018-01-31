@@ -1,4 +1,4 @@
-package informatica.senai.sp.br.albumsnroll.logic.DB;
+package informatica.senai.sp.br.albumsnroll.logic.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
