@@ -11,6 +11,7 @@ public class Album {
     private String name;
     private String genre;
     private Date releaseDate;
+    private Boolean willBeDelete;
 
 
     //instances
@@ -78,4 +79,11 @@ public class Album {
         this.releaseDate = releaseDate;
     }
 
+    public Boolean getWillBeDelete() {
+        return willBeDelete;
+    }
+
+    public void setWillBeDelete(Boolean willBeDelete) {
+        this.willBeDelete = willBeDelete;
+    }
 }
