@@ -42,7 +42,7 @@ public class AlbumDao {
         db = dbo.getReadableDatabase();
         List<Album> albums = new LinkedList<>();
 
-        String list = "select _id, name, genre, releasedate FROM " + AlbumsDBHelper.TABLE;
+        String list = "select _id, name, genre, releasedate, will_be_delete FROM " + AlbumsDBHelper.TABLE;
 
         Cursor cursor = db.rawQuery(list, null);
         Album album = null;
@@ -54,6 +54,7 @@ public class AlbumDao {
                 album.setName(cursor.getString(1));
                 album.setGenre(cursor.getString(2));
                 album.setReleaseDate(new Date(cursor.getLong(3)));
+                album.setWillBeDelete(cursor.getInt(4));
 
                 albums.add(album);
             } while (cursor.moveToNext());
@@ -83,6 +84,7 @@ public class AlbumDao {
         album.setName(cursor.getString(1));
         album.setGenre(cursor.getString(2));
         album.setReleaseDate(new Date(cursor.getLong(3)));
+        album.setWillBeDelete(cursor.getInt(4));
 
         cursor.close();
         db.close();

@@ -59,7 +59,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
 
     }
 
-    public void setAlbumOnHolder(Album album) {
+    public void setAlbumOnHolder(final Album album) {
         albumId = album.getId();
         tvName.setText(album.getName());
         tvGenre.setText(album.getGenre());
@@ -78,7 +78,11 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
             public void onClick(View v) {
                 Album albumToDelete = dao.find(albumId);
                 albumToDelete.setWillBeDelete(!albumToDelete.getWillBeDelete());
+                Log.d("lkj",String.valueOf(albumToDelete.getWillBeDelete()));
                 dao.update(albumToDelete);
+
+                Log.d("lkj",String.valueOf(dao.find(albumId).getWillBeDelete()));
+
             }
         });
     }

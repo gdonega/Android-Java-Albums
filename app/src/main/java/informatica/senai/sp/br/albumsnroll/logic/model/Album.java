@@ -90,4 +90,9 @@ public class Album {
     public void setWillBeDelete(Boolean willBeDelete) {
         this.willBeDelete = willBeDelete;
     }
+
+    public void setWillBeDelete(int willBeDelete) {
+
+        this.willBeDelete = willBeDelete == 1;
+    }
 }

@@ -14,7 +14,8 @@ public class AlbumsDBHelper extends SQLiteOpenHelper {
     public static final String ID = "_id";
     public static final String NAME = "name";
     public static final String GENRE = "genre";
-    public static final String RELEASE_DATE= "releasedate";
+    public static final String RELEASE_DATE = "releasedate";
+    public static final String WILL_BE_DELETE = "will_be_delete";
 
 
     public AlbumsDBHelper(Context context) {
@@ -25,7 +26,7 @@ public class AlbumsDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         String criarTabela = "CREATE TABLE " + TABLE + " (" + ID + " integer primary key autoincrement, " + NAME +
-                " text, " + GENRE + " text, " + RELEASE_DATE + " long)";
+                " text, " + GENRE + " text, " + RELEASE_DATE + " long, " + WILL_BE_DELETE + " integer)";
 
         db.execSQL(criarTabela);
 
