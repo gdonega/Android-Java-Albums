@@ -16,8 +16,8 @@ public class Album {
 
     //instances
     private static SimpleDateFormat fmtData =
-           new SimpleDateFormat("dd/MM/yyyy");
-      //  private static DateFormat fmtData = DateFormat.getDateInstance(DateFormat.SHORT);
+            new SimpleDateFormat("dd/MM/yyyy");
+    //  private static DateFormat fmtData = DateFormat.getDateInstance(DateFormat.SHORT);
 
     //Constructors
     public Album() {
@@ -77,14 +77,30 @@ public class Album {
         return releaseDate.getTime();
     }
 
-    public String getReleaseDateString(){return fmtData.format(releaseDate);}
+    public String getReleaseDateString() {
+        return fmtData.format(releaseDate);
+    }
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
     public Boolean getWillBeDelete() {
-        return willBeDelete;
+        if (this.willBeDelete != null) {
+            return willBeDelete;
+        } else {
+            return false;
+        }
+    }
+
+    public Integer getWillBeDeleteInteger() {
+        if (this.willBeDelete == null) {
+            return 0;
+        } else if (this.willBeDelete) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     public void setWillBeDelete(Boolean willBeDelete) {

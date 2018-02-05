@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import informatica.senai.sp.br.albumsnroll.R;
+import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
 import informatica.senai.sp.br.albumsnroll.view.activitys.Main;
 
@@ -17,6 +19,7 @@ public class AlbumAdaper extends RecyclerView.Adapter{
     //instances
     private List<Album> albums;
     private Context context = Main.getContext();
+    private AlbumViewHolder albumViewHolder;
 
     //SetDellBox - Boolean
     private boolean checkBoxStatus;
@@ -31,6 +34,18 @@ public class AlbumAdaper extends RecyclerView.Adapter{
         notifyDataSetChanged();
     }
 
+    public void dellSet(){
+        new AlbumDao().deleteAll();
+
+        for (int integer:albumViewHolder.getListPositions()) {
+            notifyItemRemoved(integer);
+            Log.d("vamola", String.valueOf(integer));
+        }
+
+
+    }
+
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -42,7 +57,7 @@ public class AlbumAdaper extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        AlbumViewHolder albumViewHolder = (AlbumViewHolder) holder;
+        albumViewHolder = (AlbumViewHolder) holder;
 
         Album album = albums.get(position);
 

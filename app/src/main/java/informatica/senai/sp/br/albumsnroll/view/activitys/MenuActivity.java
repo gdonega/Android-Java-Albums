@@ -111,9 +111,11 @@ public class MenuActivity extends AppCompatActivity {
                 adapter.setDellBox(true);
                 break;
             case R.id.final_dell_option:
+
                 finalDell.setVisible(false);
                 startDell.setVisible(true);
                 adapter.setDellBox(false);
+                adapter.dellSet();
                 break;
         }
         return true;

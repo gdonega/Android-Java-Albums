@@ -10,6 +10,9 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
@@ -31,6 +34,13 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
     private Context context;
     private Long albumId;
     private boolean checkBoxStatus;
+
+    //list for delete items of Activity
+    private List<Integer> listPositions = new ArrayList<>();
+
+    public List<Integer> getListPositions() {
+        return listPositions;
+    }
 
     public void setCheckBoxEnable(boolean checkBoxEnable) {
         this.checkBoxStatus = checkBoxEnable;
@@ -78,10 +88,14 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
             public void onClick(View v) {
                 Album albumToDelete = dao.find(albumId);
                 albumToDelete.setWillBeDelete(!albumToDelete.getWillBeDelete());
-                Log.d("lkj",String.valueOf(albumToDelete.getWillBeDelete()));
+
                 dao.update(albumToDelete);
 
-                Log.d("lkj",String.valueOf(dao.find(albumId).getWillBeDelete()));
+                if (albumToDelete.getWillBeDelete()) {
+                    listPositions.add(getAdapterPosition());
+                }else {
+                    listPositions.remove(getAdapterPosition());
+                }
 
             }
         });

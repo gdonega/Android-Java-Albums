@@ -1,11 +1,12 @@
 package informatica.senai.sp.br.albumsnroll.logic.dao;
 
 
-
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -103,6 +104,14 @@ public class AlbumDao {
         db.close();
     }
 
+    public void deleteAll() {
+        db = dbo.getWritableDatabase();
+        String del = "delete from " + AlbumsDBHelper.TABLE + " where will_be_delete = 1";
+        db.execSQL(del);
+        db.close();
+
+    }
+
 
 
     /**
@@ -113,14 +122,9 @@ public class AlbumDao {
     public void save(Album album) {
         db = dbo.getWritableDatabase();
 
+        String insert = "insert into " + AlbumsDBHelper.TABLE + " (name, genre, releasedate, will_be_delete) values (?, ?, ?, ?)";
 
-        String insert = "insert into " + AlbumsDBHelper.TABLE + " (name, genre, releasedate) values (?, ?, ?)";
-
-
-
-        db.execSQL(insert, new Object[]{album.getName(), album.getGenre(), album.getReleaseDateLong()});
-
-
+        db.execSQL(insert, new Object[]{album.getName(), album.getGenre(), album.getReleaseDateLong(), album.getWillBeDeleteInteger()});
 
         db.close();
     }
@@ -132,10 +136,10 @@ public class AlbumDao {
      */
     public void update(Album album) {
         db = dbo.getWritableDatabase();
-        String update = "update " + AlbumsDBHelper.TABLE + " set name = ?, genre = ?, releasedate = ? where _id = ?";
+        String update = "update " + AlbumsDBHelper.TABLE + " set name = ?, genre = ?, releasedate = ?,will_be_delete = ? where _id = ?";
 
 
-        db.execSQL(update, new Object[]{album.getName(), album.getGenre(), album.getReleaseDateLong(), album.getId()});
+        db.execSQL(update, new Object[]{album.getName(), album.getGenre(), album.getReleaseDateLong(), album.getWillBeDeleteInteger(), album.getId()});
         db.close();
     }
 }
