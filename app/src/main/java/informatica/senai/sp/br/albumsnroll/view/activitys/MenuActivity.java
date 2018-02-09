@@ -15,6 +15,7 @@ import android.view.View;
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.AlbumAdaper;
+import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.ShareInformation;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -26,8 +27,8 @@ public class MenuActivity extends AppCompatActivity {
         private MenuItem finalDell;
 
         //FragmentRecyclerView
-        private RecyclerView recyclerView;
-        private AlbumAdaper adapter;
+
+     //   private AlbumAdaper adapter;
         private AlbumDao dao;
 
 
@@ -54,7 +55,7 @@ public class MenuActivity extends AppCompatActivity {
             dao = new AlbumDao();
 
             //FragmentRecyclerView
-            recyclerView = findViewById(R.id.rvList);
+            loadList();
 
             //Floating Button
             fabNewAlbum = findViewById(R.id.fabAdd);
@@ -79,16 +80,21 @@ public class MenuActivity extends AppCompatActivity {
 
     /*//Start - methods of FragmentRecyclerView//*/
         private void loadList() {
-            //dao.save(new Album("lala","HAHAHAHAH",new Date()));
-            //dao.update(new Album(3L, "BATATA","N sei",new Date()));
-            // Log.d("ELP",dao.find(1L).getName());
-            //dao.delete(new Album(3L));
-            adapter = new AlbumAdaper(dao.getList());
+
+/*
+            ShareInformation shareInformation = new ShareInformation(recyclerView);
+
+            adapter = new AlbumAdaper();
             recyclerView.setAdapter(adapter);
 
 
             RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
-            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setLayoutManager(layoutManager);*/
+
+            RecyclerView recyclerView = findViewById(R.id.rvList);
+            ShareInformation shin = new ShareInformation(recyclerView);
+
+
         }
     /*//End - methods of FragmentRecyclerView//*/
 
@@ -108,14 +114,14 @@ public class MenuActivity extends AppCompatActivity {
             case R.id.start_dell_option:
                 finalDell.setVisible(true);
                 startDell.setVisible(false);
-                adapter.setDellBox(true);
+               // adapter.setDellBox(true);
                 break;
             case R.id.final_dell_option:
 
                 finalDell.setVisible(false);
                 startDell.setVisible(true);
-                adapter.setDellBox(false);
-                adapter.dellSet();
+                //adapter.setDellBox(false);
+               // adapter.dellSet();
                 break;
         }
         return true;

@@ -15,29 +15,21 @@ import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
 import informatica.senai.sp.br.albumsnroll.view.activitys.Main;
 
-public class AlbumAdaper extends RecyclerView.Adapter{
-    //instances
-    private List<Album> albums;
-    private Context context = Main.getContext();
-    private AlbumViewHolder albumViewHolder;
+public class AlbumAdaper extends RecyclerView.Adapter {
+    ShareInformation shareInformation = ShareInformation.instance;
 
-    //SetDellBox - Boolean
-    private boolean checkBoxStatus;
+
+
 
     //constructor
-    public AlbumAdaper(List<Album> albums) {
-        this.albums = albums;
+    public AlbumAdaper() {
     }
 
-    public void setDellBox(boolean newStatus){
-        this.checkBoxStatus = newStatus;
-        notifyDataSetChanged();
-    }
 
-    public void dellSet(){
+    public void dellSet() {
         new AlbumDao().deleteAll();
 
-        for (int integer:albumViewHolder.getListPositions()) {
+        for (int integer : shareInformation.getListPositions()) {
             notifyItemRemoved(integer);
             Log.d("vamola", String.valueOf(integer));
         }
@@ -57,18 +49,14 @@ public class AlbumAdaper extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        albumViewHolder = (AlbumViewHolder) holder;
-
-        Album album = albums.get(position);
-
-
+        AlbumViewHolder albumViewHolder = (AlbumViewHolder) holder;
+        Album album = shareInformation.getListOfAlbums().get(position);
         albumViewHolder.setCheckBoxEnable(checkBoxStatus);
-
         albumViewHolder.setAlbumOnHolder(album);
     }
 
     @Override
     public int getItemCount() {
-        return albums.size();
+        return shareInformation.getListOfAlbums().size();
     }
 }

@@ -34,13 +34,10 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
     private Context context;
     private Long albumId;
     private boolean checkBoxStatus;
+    private ShareInformation shareInformation = ShareInformation.instance;
 
-    //list for delete items of Activity
-    private List<Integer> listPositions = new ArrayList<>();
 
-    public List<Integer> getListPositions() {
-        return listPositions;
-    }
+
 
     public void setCheckBoxEnable(boolean checkBoxEnable) {
         this.checkBoxStatus = checkBoxEnable;
@@ -92,9 +89,9 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
                 dao.update(albumToDelete);
 
                 if (albumToDelete.getWillBeDelete()) {
-                    listPositions.add(getAdapterPosition());
+                    shareInformation.getListPositions().add(getAdapterPosition());
                 }else {
-                    listPositions.remove(getAdapterPosition());
+                    shareInformation.getListPositions().remove(getAdapterPosition());
                 }
 
             }
