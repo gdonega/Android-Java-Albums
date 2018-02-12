@@ -1,7 +1,6 @@
 package informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
 
 public class AlbumAdaper extends RecyclerView.Adapter {
-    RVManager rvManager = RVManager.INSTANCE;
+    AlbumDao dao= new AlbumDao();
 
     //constructor
     public AlbumAdaper() {
@@ -29,12 +28,12 @@ public class AlbumAdaper extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         AlbumViewHolder albumViewHolder = (AlbumViewHolder) holder;
-        Album album = new AlbumDao().getList().get(position);
+        Album album = dao.getList().get(position);
         albumViewHolder.setAlbumOnHolder(album);
     }
 
     @Override
     public int getItemCount() {
-        return new AlbumDao().getList().size();
+        return dao.getList().size();
     }
 }

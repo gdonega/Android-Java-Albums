@@ -33,7 +33,6 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
     private AlbumDao dao;
     private Context context;
     private Long albumId;
- //   private boolean checkBoxStatus;
     private RVManager rvManager = RVManager.INSTANCE;
 
 

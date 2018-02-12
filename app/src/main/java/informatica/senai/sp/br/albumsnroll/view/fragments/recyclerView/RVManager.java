@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
-import informatica.senai.sp.br.albumsnroll.logic.model.Album;
 import informatica.senai.sp.br.albumsnroll.view.activitys.Main;
 
 /**
@@ -15,30 +14,43 @@ import informatica.senai.sp.br.albumsnroll.view.activitys.Main;
  */
 
 public class RVManager {
-    /**Instances**/
+    /**Variables**/
     public static final RVManager INSTANCE = new RVManager();
     private AlbumAdaper albumAdaper = new AlbumAdaper();
     private RecyclerView recyclerView;
+    private AlbumDao dao = new AlbumDao();
 
     /**
-     * Return the Instance of this class
-     * @return
+     * RETURN THE INSTANCE OF THIS CLASS
+     * @return RVManager
      */
     public RVManager getInstance() {
         return INSTANCE;
     }
 
+
+    /**
+     * SET A RecyclerView TO MANAGER
+     * @param rv = RecyclerView instance
+     */
     public void setRecyclerView(RecyclerView rv) {
         this.recyclerView = rv;
         this.recyclerView.setAdapter(this.albumAdaper);
         this.listForm();
     }
 
+    /**
+     * LayoutManager OF THE LIST
+     */
     public void listForm() {
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(Main.getContext(), 3);
         recyclerView.setLayoutManager(layoutManager);
     }
 
+
+    /**
+     * METHODS TO SEND INFORMATION FOR CHECKBOX IN ViewHolder
+     */
     private Boolean canCheck = false;
 
     public void setStatusOfCheckBox(Boolean statusOfCheckBox) {
@@ -79,7 +91,7 @@ public class RVManager {
      *
      */
     public void notifySomeItemsWereRemoved() {
-        new AlbumDao().deleteAll();
+        dao.deleteAll();
 
         for (int integer : getlistOfPositionsToDel()) {
             albumAdaper.notifyItemRemoved(integer);
@@ -106,8 +118,7 @@ public class RVManager {
      *
      */
     public void notifyToRemoveItems(){
-        new AlbumDao().deleteAll();
-
+        dao.deleteAll();
         notifySomeChangeInTheList();
     }
 
