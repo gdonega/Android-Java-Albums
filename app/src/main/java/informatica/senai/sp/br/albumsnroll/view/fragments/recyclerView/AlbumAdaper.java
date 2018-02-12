@@ -16,7 +16,7 @@ import informatica.senai.sp.br.albumsnroll.logic.model.Album;
 import informatica.senai.sp.br.albumsnroll.view.activitys.Main;
 
 public class AlbumAdaper extends RecyclerView.Adapter {
-    ShareInformation shareInformation = ShareInformation.instance;
+    RVManager rvManager = RVManager.getInstance();
 
 
 
@@ -29,7 +29,7 @@ public class AlbumAdaper extends RecyclerView.Adapter {
     public void dellSet() {
         new AlbumDao().deleteAll();
 
-        for (int integer : shareInformation.getListPositions()) {
+        for (int integer : rvManager.getListPositions()) {
             notifyItemRemoved(integer);
             Log.d("vamola", String.valueOf(integer));
         }
@@ -50,13 +50,13 @@ public class AlbumAdaper extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         AlbumViewHolder albumViewHolder = (AlbumViewHolder) holder;
-        Album album = shareInformation.getListOfAlbums().get(position);
-        albumViewHolder.setCheckBoxEnable(checkBoxStatus);
+        Album album = rvManager.getListOfAlbums().get(position);
+        //albumViewHolder.setCheckBoxEnable(checkBoxStatus);
         albumViewHolder.setAlbumOnHolder(album);
     }
 
     @Override
     public int getItemCount() {
-        return shareInformation.getListOfAlbums().size();
+        return rvManager.getListOfAlbums().size();
     }
 }

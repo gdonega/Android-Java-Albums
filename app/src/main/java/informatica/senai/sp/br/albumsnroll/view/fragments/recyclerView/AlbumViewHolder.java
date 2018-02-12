@@ -34,7 +34,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
     private Context context;
     private Long albumId;
     private boolean checkBoxStatus;
-    private ShareInformation shareInformation = ShareInformation.instance;
+    private RVManager rvManager = RVManager.getInstance();
 
 
 
@@ -89,9 +89,9 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
                 dao.update(albumToDelete);
 
                 if (albumToDelete.getWillBeDelete()) {
-                    shareInformation.getListPositions().add(getAdapterPosition());
+                    rvManager.getListPositions().add(getAdapterPosition());
                 }else {
-                    shareInformation.getListPositions().remove(getAdapterPosition());
+                    rvManager.getListPositions().remove(getAdapterPosition());
                 }
 
             }

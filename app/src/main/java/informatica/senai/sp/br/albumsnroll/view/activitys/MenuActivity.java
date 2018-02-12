@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,25 +14,24 @@ import android.view.View;
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.AlbumAdaper;
-import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.ShareInformation;
 
 public class MenuActivity extends AppCompatActivity {
 
     /*//Start-instances//*/
 
-        //Toolbar
-        private Toolbar toolbar;
-        private MenuItem startDell;
-        private MenuItem finalDell;
+    //Toolbar
+    private Toolbar toolbar;
+    private MenuItem startDell;
+    private MenuItem finalDell;
 
-        //FragmentRecyclerView
+    //FragmentRecyclerView
+    private RecyclerView recyclerView;
+    private AlbumAdaper adapter;
+    private AlbumDao dao;
 
-     //   private AlbumAdaper adapter;
-        private AlbumDao dao;
 
-
-        //FloatingActionButton
-        private FloatingActionButton fabNewAlbum;
+    //FloatingActionButton
+    private FloatingActionButton fabNewAlbum;
 
 
 
@@ -42,60 +40,55 @@ public class MenuActivity extends AppCompatActivity {
 
 
     /*//Start-methods of AppCompactActivity//*/
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_menu);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_menu);
 
-            //Toolbar
-            toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
+        //Toolbar
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-            //DAO
-            dao = new AlbumDao();
+        //DAO
+        dao = new AlbumDao();
 
-            //FragmentRecyclerView
-            loadList();
+        //FragmentRecyclerView
+        recyclerView = findViewById(R.id.rvL);
 
-            //Floating Button
-            fabNewAlbum = findViewById(R.id.fabAdd);
-            fabNewAlbum.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivityForResult(new Intent(Main.getContext(), EditActivity.class), 00);
-                }
-            });
-        }
+        //Floating Button
+        fabNewAlbum = findViewById(R.id.fabAdd);
+        fabNewAlbum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(new Intent(Main.getContext(), EditActivity.class), 00);
+            }
+        });
+    }
 
-        @Override
-        protected void onStart() {
-            super.onStart();
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-            //FragmentRecyclerView
-            loadList();
-        }
+        //FragmentRecyclerView
+        loadList();
+    }
     /*//End-methods of AppCompactActivity//*/
 
 
 
     /*//Start - methods of FragmentRecyclerView//*/
-        private void loadList() {
-
-/*
-            ShareInformation shareInformation = new ShareInformation(recyclerView);
-
-            adapter = new AlbumAdaper();
-            recyclerView.setAdapter(adapter);
-
-
-            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
-            recyclerView.setLayoutManager(layoutManager);*/
-
-            RecyclerView recyclerView = findViewById(R.id.rvList);
-            ShareInformation shin = new ShareInformation(recyclerView);
+    private void loadList() {
+        //dao.save(new Album("lala","HAHAHAHAH",new Date()));
+        //dao.update(new Album(3L, "BATATA","N sei",new Date()));
+        // Log.d("ELP",dao.find(1L).getName());
+        //dao.delete(new Album(3L));
+        adapter = new AlbumAdaper();
+        recyclerView.setAdapter(adapter);
 
 
-        }
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
+        recyclerView.setLayoutManager(layoutManager);
+    }
     /*//End - methods of FragmentRecyclerView//*/
 
 
@@ -109,19 +102,17 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.start_dell_option:
                 finalDell.setVisible(true);
                 startDell.setVisible(false);
-               // adapter.setDellBox(true);
+           //     adapter.setDellBox(true);
                 break;
             case R.id.final_dell_option:
-
                 finalDell.setVisible(false);
                 startDell.setVisible(true);
-                //adapter.setDellBox(false);
-               // adapter.dellSet();
+              //  adapter.setDellBox(false);
                 break;
         }
         return true;
