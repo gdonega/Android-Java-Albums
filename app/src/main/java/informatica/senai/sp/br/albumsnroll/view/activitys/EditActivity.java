@@ -14,6 +14,7 @@ import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.logic.model.Album;
 import informatica.senai.sp.br.albumsnroll.view.fragments.DatePickerFragment;
+import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.RVManager;
 
 public class EditActivity extends AppCompatActivity {
     //instance of "dao"
@@ -109,6 +110,7 @@ public class EditActivity extends AppCompatActivity {
                 } else {
                     dao.save(toSaveAlbum);
                 }
+
 
 
                 setResult(Activity.RESULT_OK);

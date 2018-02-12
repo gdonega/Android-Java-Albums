@@ -14,6 +14,7 @@ import android.view.View;
 import informatica.senai.sp.br.albumsnroll.R;
 import informatica.senai.sp.br.albumsnroll.logic.dao.AlbumDao;
 import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.AlbumAdaper;
+import informatica.senai.sp.br.albumsnroll.view.fragments.recyclerView.RVManager;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -26,8 +27,7 @@ public class MenuActivity extends AppCompatActivity {
 
     //FragmentRecyclerView
     private RecyclerView recyclerView;
-    private AlbumAdaper adapter;
-    private AlbumDao dao;
+    private RVManager rvManager;
 
 
     //FloatingActionButton
@@ -49,11 +49,6 @@ public class MenuActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //DAO
-        dao = new AlbumDao();
-
-        //FragmentRecyclerView
-        recyclerView = findViewById(R.id.rvL);
 
         //Floating Button
         fabNewAlbum = findViewById(R.id.fabAdd);
@@ -69,25 +64,22 @@ public class MenuActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+
+        //FragmentRecyclerView
+        recyclerView = findViewById(R.id.rvL);
         //FragmentRecyclerView
         loadList();
     }
     /*//End-methods of AppCompactActivity//*/
 
 
-
     /*//Start - methods of FragmentRecyclerView//*/
     private void loadList() {
-        //dao.save(new Album("lala","HAHAHAHAH",new Date()));
-        //dao.update(new Album(3L, "BATATA","N sei",new Date()));
-        // Log.d("ELP",dao.find(1L).getName());
-        //dao.delete(new Album(3L));
-        adapter = new AlbumAdaper();
-        recyclerView.setAdapter(adapter);
+
+        rvManager = RVManager.INSTANCE;
+        rvManager.setRecyclerView(recyclerView);
 
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
-        recyclerView.setLayoutManager(layoutManager);
     }
     /*//End - methods of FragmentRecyclerView//*/
 
@@ -107,12 +99,13 @@ public class MenuActivity extends AppCompatActivity {
             case R.id.start_dell_option:
                 finalDell.setVisible(true);
                 startDell.setVisible(false);
-           //     adapter.setDellBox(true);
+                rvManager.setStatusOfCheckBox(true);
                 break;
             case R.id.final_dell_option:
                 finalDell.setVisible(false);
                 startDell.setVisible(true);
-              //  adapter.setDellBox(false);
+                rvManager.setStatusOfCheckBox(false);
+
                 break;
         }
         return true;

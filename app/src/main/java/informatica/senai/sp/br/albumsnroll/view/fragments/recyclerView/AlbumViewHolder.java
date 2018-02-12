@@ -23,7 +23,7 @@ import informatica.senai.sp.br.albumsnroll.view.activitys.Main;
 public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     //Instances of views from intem_album_rv.xml
-    private final CheckBox cbItem;
+
     private final TextView tvName;
     private final TextView tvGenre;
     private final TextView tvReleaseDate;
@@ -33,15 +33,10 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
     private AlbumDao dao;
     private Context context;
     private Long albumId;
-    private boolean checkBoxStatus;
-    private RVManager rvManager = RVManager.getInstance();
+ //   private boolean checkBoxStatus;
+    private RVManager rvManager = RVManager.INSTANCE;
 
 
-
-
-    public void setCheckBoxEnable(boolean checkBoxEnable) {
-        this.checkBoxStatus = checkBoxEnable;
-    }
 
     public AlbumViewHolder(View itemView) {
         super(itemView);
@@ -51,7 +46,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
         itemView.setOnLongClickListener(this);
 
         //views from intem_album_rv.xml
-        cbItem = itemView.findViewById(R.id.cbItem);
+
         tvName = itemView.findViewById(R.id.tvName);
         tvGenre = itemView.findViewById(R.id.tvGenre);
         tvReleaseDate = itemView.findViewById(R.id.tvReleaseDate);
@@ -72,7 +67,7 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
         tvGenre.setText(album.getGenre());
         tvReleaseDate.setText(album.getReleaseDateString());
 
-        if (checkBoxStatus) {
+        if (rvManager.getStatusOfCheckBox()) {
             cbPrepareToDell.setVisibility(View.VISIBLE);
         } else {
             cbPrepareToDell.setVisibility(View.INVISIBLE);
@@ -89,9 +84,9 @@ public class AlbumViewHolder extends RecyclerView.ViewHolder implements View.OnC
                 dao.update(albumToDelete);
 
                 if (albumToDelete.getWillBeDelete()) {
-                    rvManager.getListPositions().add(getAdapterPosition());
+                    rvManager.addPositionToDel(getAdapterPosition());
                 }else {
-                    rvManager.getListPositions().remove(getAdapterPosition());
+                    rvManager.removePositionToDel(getAdapterPosition());
                 }
 
             }
