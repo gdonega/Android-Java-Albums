@@ -34,6 +34,8 @@ public class RVManager {
     }
 
 
+
+
     /**
      * SET A RecyclerView TO MANAGER
      *
@@ -46,7 +48,9 @@ public class RVManager {
     }
 
     /**
-     * LayoutManager OF THE LIST
+     *
+     * TO SET LAYOUT OF THE LIST IN SCREAM
+     *
      */
     public void listForm(String listForm) {
 
