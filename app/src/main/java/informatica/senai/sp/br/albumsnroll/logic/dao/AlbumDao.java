@@ -104,6 +104,13 @@ public class AlbumDao {
         db.close();
     }
 
+    public void delete(Long id) {
+        db = dbo.getWritableDatabase();
+        String del = "delete from " + AlbumsDBHelper.TABLE + " where _id = ?";
+        db.execSQL(del, new Object[]{id});
+        db.close();
+    }
+
     public void deleteAll() {
         db = dbo.getWritableDatabase();
         String del = "delete from " + AlbumsDBHelper.TABLE + " where will_be_delete = 1";

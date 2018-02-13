@@ -126,11 +126,11 @@ public class RVManager {
     /**
      * DELETE A ITEM AND UPDATE THE LIST
      * @param positionOfTheItemOnList = Position of the Item in the list
+     * @param idOfTheItemOnList = Id of Item
      */
-    public void notifyOneItemRemove(Integer positionOfTheItemOnList){
+    public void notifyOneItemRemove(Integer positionOfTheItemOnList, Long idOfTheItemOnList){
+        dao.delete(idOfTheItemOnList);
         albumAdaper.notifyItemRemoved(positionOfTheItemOnList);
     }
-
-
 
 }

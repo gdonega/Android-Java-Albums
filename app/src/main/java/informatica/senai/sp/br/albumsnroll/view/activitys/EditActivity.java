@@ -1,6 +1,7 @@
 package informatica.senai.sp.br.albumsnroll.view.activitys;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,17 +47,17 @@ public class EditActivity extends AppCompatActivity {
         etReDate = findViewById(R.id.etReDate);
 
         /*helpers  -- start*/
-            //standard instance of calendar
-            calendar = Calendar.getInstance();
+        //standard instance of calendar
+        calendar = Calendar.getInstance();
 
-            //test of id (extra from intent)
-            bIDTest = getIntent().getExtras() != null;
+        //test of id (extra from intent)
+        bIDTest = getIntent().getExtras() != null;
 
-            //format calendar (for the Edit Text)
-            fmt = DateFormat.getDateInstance(DateFormat.LONG);
+        //format calendar (for the Edit Text)
+        fmt = DateFormat.getDateInstance(DateFormat.LONG);
 
-            //album to save
-            toSaveAlbum = new Album();
+        //album to save
+        toSaveAlbum = new Album();
         /*helpers  -- end*/
 
 
@@ -102,18 +103,24 @@ public class EditActivity extends AppCompatActivity {
                 toSaveAlbum.setGenre(etGenre.getText().toString());
                 toSaveAlbum.setReleaseDate(calendar.getTime());
 
-                /*if 'id' isn't null*/
-                if (bIDTest) {
-                    dao.update(toSaveAlbum);
+                Intent intentResult = new Intent();
+                if ((!toSaveAlbum.getName().trim().isEmpty()) && (!toSaveAlbum.getGenre().trim().isEmpty())){
+                    /*if 'id' isn't null*/
+                    if (bIDTest) {
+                        dao.update(toSaveAlbum);
+                        intentResult.putExtra(MenuActivity.EDIT_RESULT, "UPDATE WITH SUCCESS");
+                    /*if 'id' is null*/
+                    } else {
 
-                /*if 'id' is null*/
+                        dao.save(toSaveAlbum);
+                        intentResult.putExtra(MenuActivity.EDIT_RESULT, "SAVE WITH SUCCESS");
+
+                    }
+
+                    setResult(Activity.RESULT_OK, intentResult);
                 } else {
-                    dao.save(toSaveAlbum);
+                    setResult(Activity.RESULT_CANCELED, intentResult.putExtra(MenuActivity.EDIT_RESULT, "USE ALL THE SPACES"));
                 }
-
-
-
-                setResult(Activity.RESULT_OK);
                 finish();
             }
         });
